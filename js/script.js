@@ -47,20 +47,3 @@ ScrollReveal().reveal('.about-photo-wrapper', { delay: 600, origin: 'left' });
 ScrollReveal().reveal('.about-text', { delay: 600, origin: 'right' });
 ScrollReveal().reveal('.section-title', { delay: 500, origin: 'top' });
 ScrollReveal().reveal('.photo-gallery, .portfolio-section, .contacts', { delay: 200, origin: 'bottom', interval: 200 });
-
-const portfolioSwiper = new Swiper('.portfolioSwiper', {
-    // Настройки Swiper для документов
-    slidesPerView: 'auto',
-    spaceBetween: 20,
-    centeredSlides: true,
-    grabCursor: true,
-    loop: false,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-});

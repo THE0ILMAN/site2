@@ -168,13 +168,11 @@ body {
     color: #666;
 }
 
-.portfolio-slide {
+.portfolio-items {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    /* Убрали фиксированные размеры, чтобы слайд подстраивался под контент */
-    width: auto;
-    height: auto;
+    gap: 20px;
 }
 
 .portfolio-item {
