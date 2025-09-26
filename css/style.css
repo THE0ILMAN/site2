@@ -6,12 +6,18 @@
     --background-color: #f7fcf9; /* Очень светлый фон */
     --accent-color: #66bb6a; /* Яркий акцент */
     --border-radius: 10px;
+    
+    /* Добавил переменные для высоты шапки */
+    --header-height-desktop: 150px; /* Увеличил запас */
+    --header-height-mobile: 100px;  /* Увеличил запас */
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* Это решает проблему горизонтального сдвига */
+    overflow-x: hidden;
 }
 
 html {
@@ -23,7 +29,6 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
-    /* Убрали padding-top, так как он будет в .about-me */
 }
 
 .container {
@@ -88,6 +93,8 @@ body {
 /* About Me */
 .about-me {
     background-color: #f0f8f0;
+    /* Используем переменную для отступа, чтобы не срезало */
+    padding-top: var(--header-height-desktop);
 }
 
 .about-content {
@@ -248,12 +255,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Адаптивность и исправление проблемы с шапкой */
-.about-me {
-    /* Отступ для десктопа (высота шапки ~80px) */
-    padding-top: calc(80px + 60px);
-}
-
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .header {
         padding: 20px 0;
@@ -284,9 +286,9 @@ body {
         text-align: left;
     }
 
+    /* Используем переменную для мобильных устройств */
     .about-me {
-        /* Отступ для мобильных устройств (высота шапки ~60px) */
-        padding-top: calc(60px + 40px);
+        padding-top: var(--header-height-mobile);
     }
 }
 
