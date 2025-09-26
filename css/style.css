@@ -9,7 +9,7 @@
     
     /* Добавил переменные для высоты шапки */
     --header-height-desktop: 150px; /* Увеличил запас */
-    --header-height-mobile: 100px;  /* Увеличил запас */
+    --header-height-mobile: 50px;  /* Увеличил запас */
 }
 
 * {
