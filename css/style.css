@@ -168,11 +168,12 @@ body {
     color: #666;
 }
 
-.portfolio-items {
+.portfolio-slide {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    height: auto;
+    width: auto;
 }
 
 .portfolio-item {
