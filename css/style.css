@@ -26,6 +26,41 @@ body {
     padding-top: 80px; /* Чтобы шапка не закрывала контент */
 }
 
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* Этот отступ для мобильных устройств */
+    }
+
+    .header {
+        padding: 20px 0;
+    }
+
+    .header-title {
+        font-size: 2rem;
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+        margin-bottom: 30px;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text {
+        text-align: left;
+    }
+}
+
 .container {
     max-width: 960px;
     margin: 0 auto;
