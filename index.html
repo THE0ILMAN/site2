@@ -3,491 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Визитка учителя</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Стили CSS */
-        /* === Общие стили и переменные === */
-        :root {
-            --primary-color: #81c784; /* Пастельный зеленый */
-            --secondary-color: #a5d6a7; /* Светло-зеленый */
-            --accent-color: #fff8e1; /* Пастельный бежевый */
-            --text-dark: #333;
-            --text-light: #f4f4f4;
-            --font-main: 'Poppins', sans-serif;
-            --font-secondary: 'Lato', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-secondary);
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            overflow: hidden;
-            padding: 0 20px;
-        }
-
-        h1, h2 {
-            font-family: var(--font-main);
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            font-size: 2.5em;
-            position: relative;
-            padding-bottom: 10px;
-            margin-top: 50px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-
-        section {
-            padding: 60px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* === Шапка сайта (Header) === */
-        .main-header {
-            background: var(--primary-color);
-            color: var(--text-light);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .main-header h1 {
-            color: var(--text-light);
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .main-header nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        .main-header nav ul li {
-            margin-left: 20px;
-        }
-
-        .main-header nav ul li a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .main-header nav ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle .bar {
-            height: 3px;
-            width: 25px;
-            background-color: var(--text-light);
-            margin: 4px 0;
-            transition: 0.4s;
-        }
-
-        /* === Секция "Обо мне" === */
-        #about .about-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        #about .profile-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-color);
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        #about p {
-            max-width: 700px;
-            margin: auto;
-            font-size: 1.1em;
-        }
-
-        /* === Секция "Награды" === */
-        #awards {
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            padding: 60px 0;
-        }
-
-        #awards .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .award-card {
-            background: var(--accent-color);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .award-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .award-card i {
-            font-size: 3em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .award-card h3 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-        
-        .award-card p {
-            font-size: 0.9em;
-        }
-
-        /* === Секция "Фотогалерея" === */
-        #gallery .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        #gallery .gallery-item {
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        
-        #gallery .gallery-item img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        #gallery .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* === Секция "Контакты" === */
-        #contact {
-            background: var(--text-dark);
-            color: var(--text-light);
-        }
-
-        #contact h2 {
-            color: var(--accent-color);
-        }
-        
-        #contact h2::after {
-            background-color: var(--accent-color);
-        }
-
-        .contact-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .contact-info {
-            margin-bottom: 30px;
-        }
-        
-        .contact-info p {
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-        
-        .social-icons a {
-            color: var(--text-light);
-            font-size: 2em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            color: var(--primary-color);
-        }
-        
-        .contact-form {
-            width: 100%;
-            max-width: 600px;
-        }
-        
-        .contact-form .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-family: inherit;
-            background: #fff;
-            color: var(--text-dark);
-        }
-        
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-        
-        .contact-form button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: var(--primary-color);
-            color: var(--text-light);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-        
-        .contact-form button:hover {
-            background: #689f6c;
-        }
-
-        /* === Футер (Footer) === */
-        .main-footer {
-            background: var(--text-dark);
-            color: var(--text-light);
-            text-align: center;
-            padding: 20px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* === Медиа-запросы (адаптивность) === */
-        @media (max-width: 768px) {
-            .main-header nav {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                background: var(--primary-color);
-                position: absolute;
-                top: 60px;
-                left: 0;
-            }
-
-            .main-header nav.active {
-                display: flex;
-            }
-
-            .main-header nav ul {
-                flex-direction: column;
-                padding: 20px 0;
-            }
-
-            .main-header nav ul li {
-                margin: 10px 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-        }
-    </style>
+    <title>Визитка учителя - Имя Фамилия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
 
-    <header class="main-header">
+    <header class="header">
         <div class="container">
-            <h1>Иванова Анна Сергеевна</h1>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#awards">Награды</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-            <div class="menu-toggle" id="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <h1 class="header-title">Имя Фамилия</h1>
+            <p class="header-subtitle">Учитель русского языка и литературы</p>
         </div>
     </header>
 
-    <main>
-        <section id="about">
+    <main class="main">
+        <section id="about" class="section about-me">
             <div class="container">
-                <h2>Обо мне</h2>
+                <h2 class="section-title">Обо мне</h2>
                 <div class="about-content">
-                    <img src="https://via.placeholder.com/200" alt="Фото учителя" class="profile-photo">
-                    <p>Здравствуйте! Меня зовут Иванова Анна Сергеевна, и я — учитель начальных классов. Моя страсть — это помогать детям раскрывать свой потенциал и развивать любовь к знаниям. Я верю, что каждый ребенок уникален и талантлив, а моя задача — создать поддерживающую и вдохновляющую атмосферу в классе. Уже более 10 лет я работаю в школе и каждый день убеждаюсь, что выбрала самую лучшую профессию на свете.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="awards">
-            <div class="container">
-                <h2>Награды и достижения</h2>
-                <div class="awards-grid">
-                    <div class="award-card">
-                        <i class="fas fa-medal"></i>
-                        <h3>Учитель года 2023</h3>
-                        <p>Победитель городского конкурса "Учитель года" за инновационные методики обучения.</p>
+                    <div class="about-photo-wrapper">
+                        <img src="img/avatar.jpg" alt="Фото учителя" class="about-photo">
                     </div>
-                    <div class="award-card">
-                        <i class="fas fa-award"></i>
-                        <h3>Благодарственное письмо</h3>
-                        <p>Отмечена руководством школы за высокий профессионализм и вклад в развитие одаренных детей.</p>
-                    </div>
-                    <div class="award-card">
-                        <i class="fas fa-star"></i>
-                        <h3>Диплом за участие</h3>
-                        <p>Активное участие в региональной научно-практической конференции по вопросам образования.</p>
+                    <div class="about-text">
+                        <p>
+                            Здравствуйте! Меня зовут [Ваше имя и фамилия]. Я работаю учителем уже [количество] лет и преподаю [предмет]. Моя главная цель — помочь ученикам полюбить предмет и раскрыть свой потенциал. Я верю, что каждый ребенок уникален и талантлив. На занятиях мы не только изучаем теорию, но и много практикуем, участвуем в проектах и олимпиадах.
+                        </p>
+                        <p>
+                            В свободное время я увлекаюсь [хобби], что помогает мне находить новые подходы к обучению.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="gallery">
+        <section id="gallery" class="section photo-gallery">
             <div class="container">
-                <h2>Фотогалерея</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Классный+час" alt="Фото 1"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Праздник+букваря" alt="Фото 2"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Проектная+работа" alt="Фото 3"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Внеклассная+работа" alt="Фото 4"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=На+уроке" alt="Фото 5"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Экскурсия" alt="Фото 6"></div>
+                <h2 class="section-title">Галерея</h2>
+                <p class="gallery-description">Моменты из школьной жизни: уроки, праздники и внеклассные мероприятия.</p>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="img/gallery/photo1.jpg" alt="Фото 1"></div>
+                        <div class="swiper-slide"><img src="img/gallery/photo2.jpg" alt="Фото 2"></div>
+                        <div class="swiper-slide"><img src="img/gallery/photo3.jpg" alt="Фото 3"></div>
+                        <div class="swiper-slide"><img src="img/gallery/photo4.jpg" alt="Фото 4"></div>
+                        <div class="swiper-slide"><img src="img/gallery/photo5.jpg" alt="Фото 5"></div>
+                        </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </section>
-
-        <section id="contact">
+        
+        <section id="portfolio" class="section portfolio-section">
             <div class="container">
-                <h2>Контакты</h2>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
-                        <p><i class="fas fa-envelope"></i> anna.ivanova@email.ru</p>
-                        <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Школьная, 15</p>
+                <h2 class="section-title">Портфолио</h2>
+                <p class="portfolio-description">Здесь вы можете скачать мои учебные материалы и презентации.</p>
+                <div class="portfolio-items">
+                    <a href="files/portfolio.docx" download class="portfolio-item">
+                        <i class="fas fa-file-word portfolio-icon"></i>
+                        <span class="portfolio-text">Пример урока (Word)</span>
+                    </a>
+                    <a href="files/presentation.pptx" download class="portfolio-item">
+                        <i class="fas fa-file-powerpoint portfolio-icon"></i>
+                        <span class="portfolio-text">Презентация к уроку (PPTX)</span>
+                    </a>
+                    <a href="files/syllabus.pdf" download class="portfolio-item">
+                        <i class="fas fa-file-pdf portfolio-icon"></i>
+                        <span class="portfolio-text">Учебный план (PDF)</span>
+                    </a>
                     </div>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </section>
+
+        <section id="contacts" class="section contacts">
+            <div class="container">
+                <h2 class="section-title">Контакты</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <a href="tel:+79991234567" class="contact-link">+7 (999) 123-45-67</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <a href="mailto:teacher.name@email.ru" class="contact-link">teacher.name@email.ru</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Иванова А.С. Все права защищены.</p>
+            <p>&copy; 2024 Имя Фамилия. Все права защищены.</p>
         </div>
     </footer>
 
-    <script>
-        // Анимация при прокрутке
-        const sections = document.querySelectorAll('section');
-
-        const observerOptions = {
-            root: null,
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Адаптивное меню
-        const menuToggle = document.getElementById('menu-toggle');
-        const mainNav = document.getElementById('main-nav');
-        
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-        });
-        
-        // Закрытие меню при клике на пункт
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-            });
-        });
-    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>
