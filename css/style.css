@@ -254,7 +254,8 @@ body {
 /* Адаптивность */
 @media (max-width: 768px) {
     body {
-        padding-top: 80px; /* Увеличенный отступ для мобильных устройств */
+        padding-top: 120px; /* Увеличенный отступ для мобильных устройств */
+        overflow-x: hidden;
     }
 
     .header {
@@ -262,11 +263,11 @@ body {
     }
 
     .header-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .header-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .section {
